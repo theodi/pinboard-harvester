@@ -1,0 +1,6 @@
+import_resources:
+  every: 1m
+  class: PinboardHarvester
+  args: 1
+  description: "Harvest Pinboard Links"
+  queue: harvest

@@ -1,0 +1,34 @@
+class PinboardHarvester
+
+  @queue = 'harvest'
+
+  def initialize(days=nil)
+    @s = PinboardStore.new()
+    @days = days
+    posts = harvest
+    puts posts.inspect
+    posts.each do |post|
+      @s.upsert(post)
+    end
+  end
+
+  def harvest
+    # enqueue next job
+    Resque.enqueue(PinboardHarvester, 1)
+    # harvest
+    p = Pinboard::Client.new(:username => ENV['PINBOARD_USERNAME'], :password => ENV['PINBOARD_PASSWORD'])
+    if @days.nil?
+      p.posts
+    else
+      now = Date.today
+      from = now - @days
+      p.posts(:fromdt => from)
+    end
+  end
+
+  def self.perform(days=nil)
+    @days = days
+    harvest
+  end
+
+end
