@@ -65,3 +65,6 @@ DEPENDENCIES
   pinboard
   resque
   resque-scheduler
+
+BUNDLED WITH
+   1.11.2
