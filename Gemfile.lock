@@ -10,7 +10,7 @@ GEM
     bson (1.12.5)
     bson_ext (1.12.5)
       bson (~> 1.12.5)
-    dotenv (2.1.0)
+    dotenv (2.1.1)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
